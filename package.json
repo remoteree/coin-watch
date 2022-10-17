@@ -6,9 +6,14 @@
   "dependencies": {
     "express": "^4.18.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "concurrently": "^7.4.0"
+  },
   "scripts": {
-    "start": "node server/index.js"
+    "start": "node server/index.js",
+    "server": "node server/index.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],
   "author": "",
