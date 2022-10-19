@@ -1,4 +1,3 @@
-const dotenv = require("dotenv").config();
 const jwt = require("jsonwebtoken");
 
 function auth(req, res, next) {
@@ -14,8 +13,6 @@ function auth(req, res, next) {
     req.user = decoded;
     next();
   } catch (ex) {
-    console.log(process.env.jwtPrivateKey);
-    console.log(dotenv.parsed);
     res.status(400).send("Invalid token");
   }
 }
