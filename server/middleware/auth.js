@@ -1,3 +1,4 @@
+const dotenv = require("dotenv").config();
 const jwt = require("jsonwebtoken");
 
 function auth(req, res, next) {
@@ -8,10 +9,13 @@ function auth(req, res, next) {
 
   try {
     // This decodes the token and returns the payload and the next moves on to the route handler
-    const decoded = jwt.verify(token, process.env("jwtPrivateKey"));
+    const decoded = jwt.verify(token, process.env.jwtPrivateKey);
+
     req.user = decoded;
     next();
   } catch (ex) {
+    console.log(process.env.jwtPrivateKey);
+    console.log(dotenv.parsed);
     res.status(400).send("Invalid token");
   }
 }
