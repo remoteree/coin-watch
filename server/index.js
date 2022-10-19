@@ -1,3 +1,4 @@
+const error = require("./middleware/error");
 const dotenv = require("dotenv").config();
 const mongoose = require("mongoose");
 const express = require("express");
@@ -21,6 +22,7 @@ mongoose
 app.use(express.json());
 app.use("/api/users", users);
 app.use("/api/auth", auth);
+app.use(error);
 
 app.get("/api", (req, res) => {
   res.json({ message: "Hello World!" });
