@@ -4,6 +4,8 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 const dotenv = require("dotenv").config();
 
+const users = require("./routes/users");
+
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => console.log("Connected to Mongodb"))
