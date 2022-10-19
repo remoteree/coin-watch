@@ -19,7 +19,10 @@ router.post("/", async (req, res) => {
 
   await user.save();
 
-  res.send(_.pick(user, ["_id", "name", "email"]));
+  const token = user.generateAuthToken();
+  res
+    .header("x-auth-token", token) // First argument is name of header, value is the second arg
+    .send(_.pick(user, ["_id", "name", "email"]));
   //   We use the .pick method from lodash here to get an elegant way of writing the below code
   //   name: req.body.name,
   //   email: req.body.email,
