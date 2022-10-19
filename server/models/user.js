@@ -25,13 +25,13 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-const User = mongoose.model("User", userSchema);
-
 userSchema.methods.generateAuthToken = function () {
   const token = jwt.sign({ _id: this._id }, process.env.jwtPrivateKey);
   return token;
 };
 // Creates a method in the user schema to generate a json web token
+
+const User = mongoose.model("User", userSchema);
 
 const schema = Joi.object({
   name: Joi.string().min(5).max(50).required(),
