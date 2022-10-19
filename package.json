@@ -11,7 +11,9 @@
     "joi": "^17.6.3",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
-    "mongoose": "^6.6.5"
+    "mongoose": "^6.6.5",
+    "winston": "^3.8.2",
+    "winston-mongodb": "^5.1.0"
   },
   "devDependencies": {
     "concurrently": "^7.4.0"
