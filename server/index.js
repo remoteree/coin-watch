@@ -1,3 +1,4 @@
+require("express-async-errors"); //Helps wrap routes to async error handling middleware
 const error = require("./middleware/error");
 const dotenv = require("dotenv").config();
 const mongoose = require("mongoose");

@@ -1,3 +1,5 @@
+//Middleware function that checks if the user is authorized by verifying their jwt token
+
 const jwt = require("jsonwebtoken");
 
 function auth(req, res, next) {

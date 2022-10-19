@@ -1,3 +1,5 @@
+//Middleware function that checks if a user is an admin
+
 function admin(req, res, next) {
   //401 Unauthorized
   //403 Forbidden
