@@ -1,3 +1,4 @@
+const jwt = require("jsonwebtoken");
 const Joi = require("joi");
 const _ = require("lodash");
 const bcrypt = require("bcrypt");
@@ -18,11 +19,13 @@ router.post("/", async (req, res) => {
   let user = await User.findOne({ email: req.body.email });
   if (!user) return res.status(400).send("Invalid email or password.");
 
+  // Bcrypt.compare() compares the password to the hashed password using the salt. If equal, return true.
   const validPassword = await bcrypt.compare(req.body.password, user.password);
-  // bcrypt.compare compares the password to the hashed password using the salt. If equal, return true.
   if (!validPassword) return res.status(400).send("Invalid email or password.");
 
-  res.send(true); //Need to make this a webtoken
+  //This creates a webtoken which uses the userID as a form of identification
+  const token = jwt.sign({ _id: user._id }, process.env.jwtPrivateKey);
+  res.send(token);
 });
 
 module.exports = router;
