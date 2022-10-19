@@ -5,6 +5,7 @@ const app = express();
 const dotenv = require("dotenv").config();
 
 const users = require("./routes/users");
+const auth = require("./routes/auth");
 
 mongoose
   .connect(process.env.MONGODB_URI)
@@ -13,6 +14,7 @@ mongoose
 
 app.use(express.json());
 app.use("/api/users", users);
+app.use("/api/auth", auth);
 
 app.get("/api", (req, res) => {
   res.json({ message: "Hello World!" });
